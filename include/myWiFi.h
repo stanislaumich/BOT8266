@@ -1,6 +1,7 @@
 #ifndef myWiFi
 #define myWiFi
 #include <ESP8266WiFi.h>
+#include <ESP8266Ping.h>
 #include <WiFiClientSecure.h>
 //#ifndef place
  #include "place.h"
@@ -8,6 +9,8 @@
 //#ifndef defs
  #include "defs.h"
 //#endif
+
+const IPAddress PhoneIP(192,168,1,11);
 
 const char* ssid = STASSID;
 const char* password = STAPSK;
@@ -45,4 +48,5 @@ IPAddress String_to_IP(String strIP){
  IPAddress ip_str( Parts[0], Parts[1], Parts[2], Parts[3] );
  return(ip_str);
  }
+ bool pingMe(void){return Ping.ping(PhoneIP);}
 #endif 
