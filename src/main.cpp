@@ -23,6 +23,8 @@ bool pingMe(void);
 void showtime(void);
 unsigned long prev=0;
 
+int tfchime=1;
+
 void ticktime(){
   timeClient.update();
   hour=timeClient.getHours();
@@ -31,8 +33,9 @@ void ticktime(){
   wd=timeClient.getDay();
   isbud()?bud():dummy();
   showtime();
-  if ((sec>=0&&sec<=1)&&mins==0){chime();}
+  if (sec>=0&&sec<=1&&mins==0&&tfchime==1){chime();}
   if (pingMe()){beep(150,150);}
+  if (sec>=1){tfchime=0;}
 }
 
 void reboot(void){
